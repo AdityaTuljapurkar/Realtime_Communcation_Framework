@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+<h1> Authorize </h1>
+<form action="checkhome" method="post">
+    {% csrf_token %}
+    Username: <input type="text" placeholder="Enter username" name="username" id="username" required>
+    <br>
+    room: <input type="text" placeholder="Enter room" name="room" id="room" required>
+    <br>
+    <button type="submit">Submit</button>
+    
+</form>
+<form action="createRoom" method="post">
+    {% csrf_token %}
+    <button type="submit">Create Room</button>
+</form>
+{{error}}
+
+</body>
+</html>
