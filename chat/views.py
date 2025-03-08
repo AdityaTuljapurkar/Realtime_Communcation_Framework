@@ -36,26 +36,22 @@ def checkview(request):
         })
     
 def createRoom(request):
-    return render (request,'createRoom.html')
+    return render(request, 'createRoom.html')
 
 def CreateNewRoom(request):
     username = request.POST.get('username')
-    room = request.POST.get('room')
-    if Room.objects.filter(room =room).exists():
-        output = "The room already exist"
-    else :
-        new_room =Room.objects.create(room = room , name = username)
+    room_name = request.POST.get('room')  # Get the room name from the form
+    
+    # Check if a room with this name already exists
+    if Room.objects.filter(name=room_name).exists():
+        output = "The room already exists"
+    else:
+        # Create a new room with the name from the form
+        new_room = Room.objects.create(name=room_name)
         new_room.save()
         output = "The room has been created"
-    return render(request,"home.html",{
-        'output':output,
-    })
-
-
-
-
-
-
+    
+    return render(request, "home.html")
 
 
 
